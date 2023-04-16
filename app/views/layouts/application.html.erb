@@ -60,6 +60,11 @@
             <div class="text-white">
               <% if user_signed_in? %> 
                 <div>Welcome <%= current_user.email %></div> 
+              <% end %>
+            </div>
+
+            <div class="text-gray-200 ml-5">
+              <% if user_signed_in? %> 
                 <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
               <% else %>
                 <%= button_to "Sign in", new_user_session_path %> 

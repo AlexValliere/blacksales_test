@@ -1,29 +1,66 @@
-<h1>Your cart</h1>
-
 <% if @cart.cart_items.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Unit price</th>
-        <th>Total price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cart.cart_items.each do |item| %>
-        <tr>
-          <td><%= item.product.title %></td>
-          <td><%= item.quantity %></td>
-          <td><%= item.product.price %> €</td>
-          <td><%= item.product.price * item.quantity %> €</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="pointer-events-auto w-screen max-w-xl mx-auto">
+    <div class="flex h-full flex-col bg-white shadow-xl">
+      <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+        <div class="flex items-start justify-between">
+          <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+        </div>
 
-  <p>Total price of the cart : <%= @cart.total_price %> €</p>
-  <%= button_to "Validate the cart", checkout_cart_path(@cart), method: :post %>
+        <div class="mt-8">
+          <div class="flow-root">
+            <ul role="list" class="-my-6 divide-y divide-gray-200">
+
+              <% @cart.cart_items.each do |item| %>
+                <li class="flex py-6">
+                  <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                    <%= image_tag item.product.image_url, class: "h-full w-full object-cover object-center" %>
+                  </div>
+
+
+                  <div class="ml-4 flex flex-1 flex-col">
+                    <div>
+                      <div class="flex justify-between text-base font-medium text-gray-900">
+                        <h3>
+                          <%= link_to item.product.title, product_path(item.product) %>
+                        </h3>
+                        <p class="ml-4"><%= number_to_currency(item.product.price) %></p>
+                      </div>
+                    </div>
+                    <div class="flex flex-1 items-end justify-between text-sm">
+                      <p class="text-gray-500">Qty <%= item.quantity %></p>
+
+                      <div class="flex">
+                        <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+        <div class="flex justify-between text-base font-medium text-gray-900">
+          <p>Subtotal</p>
+          <p><%= @cart.total_price %></p>
+        </div>
+        <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+        <div class="mt-6">
+          <%= button_to "Checkout", checkout_cart_path(@cart), method: :post, class: "flex items-center justify-center w-full rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
+        </div>
+        <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+          <p>
+            or&nbsp;
+            <%= button_to "Continue Shopping 🡲", products_path, :method => "get", class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 <% else %>
   <p>Your cart is currently empty.</p>
 <% end %>
+ 
