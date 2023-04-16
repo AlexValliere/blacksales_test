@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'carts/checkout'
   devise_for :users
   resources :products, only: [:index, :show]
-  resources :cart_items, only: [:create]
+  resources :cart_items, only: [:create, :destroy]
   resources :carts do
     post :checkout, on: :member
   end

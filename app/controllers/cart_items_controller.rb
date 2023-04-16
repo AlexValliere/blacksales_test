@@ -10,4 +10,13 @@ class CartItemsController < ApplicationController
     flash[:notice] = "The product was successfully added to the cart."
     redirect_to product_path(@product)
   end
+
+  def destroy
+    @product = Product.find(params[:id]) # Fetch the product to add to the cart
+
+    @cart = current_cart
+    @cart.remove_product(@product)
+    flash[:notice] = "The product was successfully removed from the cart."
+    redirect_to cart_path(@cart)
+  end
 end

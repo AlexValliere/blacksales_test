@@ -30,7 +30,7 @@
                       <p class="text-gray-500">Qty <%= item.quantity %></p>
 
                       <div class="flex">
-                        <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                        <%= button_to "Remove", cart_item_path(item.product), method: :delete, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
                       </div>
                     </div>
                   </div>
