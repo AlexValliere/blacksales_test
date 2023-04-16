@@ -35,6 +35,13 @@
         <h2 class="sr-only">Product information</h2>
         <p class="text-3xl tracking-tight text-gray-900"><%= number_to_currency(@product.price) %></p>
         <p class="text-sm tracking-tight text-gray-900">Available quantity: <%= @product.quantity %></p>
+        
+        <%= form_with url: cart_items_path, method: :post do |f| %>
+          <%= hidden_field_tag :product_id, @product.id %> <%# Pass the ID of the product as an hidden parameter %>
+          <%= label_tag :quantity, "Quantité :" %>
+          <%= number_field_tag :quantity, 1, min: 1, max: @product.quantity %>
+          <%= submit_tag "Add to cart" %>
+        <% end %>
 
         <!-- Reviews -->
         <div class="mt-6">

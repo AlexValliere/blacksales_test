@@ -1,0 +1,29 @@
+<h1>Your cart</h1>
+
+<% if @cart.cart_items.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit price</th>
+        <th>Total price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.cart_items.each do |item| %>
+        <tr>
+          <td><%= item.product.title %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.product.price %> €</td>
+          <td><%= item.product.price * item.quantity %> €</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>Total price of the cart : <%= @cart.total_price %> €</p>
+  <%= button_to "Validate the cart", checkout_cart_path(@cart), method: :post %>
+<% else %>
+  <p>Your cart is currently empty.</p>
+<% end %>
