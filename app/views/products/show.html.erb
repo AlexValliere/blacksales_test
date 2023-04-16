@@ -36,13 +36,6 @@
         <p class="text-3xl tracking-tight text-gray-900"><%= number_to_currency(@product.price) %></p>
         <p class="text-sm tracking-tight text-gray-900">Available quantity: <%= @product.quantity %></p>
         
-        <%= form_with url: cart_items_path, method: :post do |f| %>
-          <%= hidden_field_tag :product_id, @product.id %> <%# Pass the ID of the product as an hidden parameter %>
-          <%= label_tag :quantity, "Quantité :" %>
-          <%= number_field_tag :quantity, 1, min: 1, max: @product.quantity %>
-          <%= submit_tag "Add to cart" %>
-        <% end %>
-
         <!-- Reviews -->
         <div class="mt-6">
           <h3 class="sr-only">Reviews</h3>
@@ -74,9 +67,14 @@
           </div>
         </div>
 
-        <form class="mt-10">
-          <button type="submit"class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart</button>
-        </form>
+        <div class="mt-10">
+          <%= form_with url: cart_items_path, method: :post do |f| %>
+            <%= hidden_field_tag :product_id, @product.id %> <%# Pass the ID of the product as an hidden parameter %>
+            <%= label_tag :quantity, "Quantité :" %>
+            <%= number_field_tag :quantity, 1, min: 1, max: @product.quantity %>
+            <%= submit_tag "Add to cart", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <% end %>
+        </div>
       </div>
 
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

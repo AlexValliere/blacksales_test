@@ -46,12 +46,11 @@
             </div>
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="/products" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Products</a>
+                <%= link_to "Products", products_path, aria_current: (current_page?(products_path) ? "page" : nil), class: (current_page?(products_path) ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium") %>
 
-                <a href="/carts/show" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Cart</a>
+                <%= link_to "Cart", carts_show_path, aria_current: (current_page?(carts_show_path) ? "page" : nil), class: (current_page?(carts_show_path) ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium") %>
 
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
+                <%= link_to "About", about_path, aria_current: (current_page?(about_path) ? "page" : nil), class: (current_page?(about_path) ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium") %>
               </div>
             </div>
           </div>

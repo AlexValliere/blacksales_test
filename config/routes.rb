@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/about", to: "pages#about"
   get 'cart_items/create'
   get 'carts/show'
   get 'carts/checkout'
