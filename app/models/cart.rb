@@ -10,7 +10,7 @@ class Cart < ApplicationRecord
   def add_product(product, quantity = 1)
     item = cart_items.find_by(product: product)
     if item
-      item.quantity += quantity
+      item.quantity += quantity.to_i
       item.save
     else
       cart_items.create(product: product, quantity: quantity)
