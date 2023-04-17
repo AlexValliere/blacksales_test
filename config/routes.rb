@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'cart_items/create'
   get 'carts/show'
   get 'carts/checkout'
+  get 'reset_db', to: 'application#reset_db'
   devise_for :users
   resources :products, only: [:index, :show]
   resources :cart_items, only: [:create, :destroy]

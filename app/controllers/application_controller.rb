@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+
+  def reset_db
+    system "rails db:reset db:migrate"
+    flash[:notice] = "Database reset and migrated"
+    redirect_to root_path
+  end
+
   private
 
   def current_cart
